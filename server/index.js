@@ -8,7 +8,8 @@ app.use(cors());
 
 
 // Routes
-
+// Register and Login routes
+app.use("/auth", require("./routes/jwtAuth"));
 
 
 
