@@ -2,9 +2,10 @@ const router = require("express").Router();
 const pool = require("../db");
 const bcrypt = require('bcrypt');
 const jwtGenerator = require("../utils/jwtGenerator");
+const validInfo = require("../middleware/validInfo");
 
 // Registering
-router.post("/register", async(req, res) => {
+router.post("/register", validInfo, async(req, res) => {
   try {
     const { username, firstName, password } = req.body;
     const user = await pool.query("SELECT * FROM users WHERE username = $1", [
@@ -38,7 +39,7 @@ router.post("/register", async(req, res) => {
 
 //login route
 
-router.post("/login", async(req, res) => {
+router.post("/login", validInfo, async(req, res) => {
   try {
 
     const { username, password } = req.body;
@@ -46,6 +47,7 @@ router.post("/login", async(req, res) => {
     const user = await pool.query("SELECT * FROM users WHERE username = $1", [
       username
     ]);
+
 
     if(user.rows.length === 0) {
       return res.status(401).json("Password or email is incorrect");
