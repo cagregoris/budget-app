@@ -1,4 +1,5 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useState} from 'react';
+import {Link} from "react-router-dom";
 
 function Register({setAuth}) {
 
@@ -46,6 +47,7 @@ function Register({setAuth}) {
         <input type="password" name="password" placeholder="password" value={password} onChange={e => onChange(e)}></input>
         <button type='submit'>Submit</button>
       </form>
+      <Link to="/login">Login</Link>
     </Fragment>
   )
 }
