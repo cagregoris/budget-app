@@ -11,6 +11,9 @@ app.use(cors());
 // Register and Login routes
 app.use("/auth", require("./routes/jwtAuth"));
 
+//Dashboard Route
+app.use("/dashboard", require("./routes/dashboard"));
+
 
 
 app.listen(5001, () => {
