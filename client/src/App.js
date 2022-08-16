@@ -17,14 +17,18 @@ function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const setAuth = boolean => {
+    setIsAuthenticated(boolean);
+  };
+
   return (
    <Fragment>
       <Router>
         <div className='container'>
           <Routes>
-            <Route exact path="/login" element={ !isAuthenticated ?  (<Login/>) : (< Navigate to="/dashboard" />) } />
-            <Route exact path="/register" element={ !isAuthenticated ? (<Register/>) : (< Navigate to="/login" />) } />
-            <Route exact path="/dashboard" element={ isAuthenticated ? (<Dashboard/>) : (< Navigate to="/login" />) } />
+            <Route exact path="/login" element={ !isAuthenticated ?  (<Login setAuth={setAuth} />) : (< Navigate to="/dashboard" />) } />
+            <Route exact path="/register" element={ !isAuthenticated ? (<Register setAuth={setAuth} />) : (< Navigate to="/login" />) } />
+            <Route exact path="/dashboard" element={ isAuthenticated ? (<Dashboard setAuth={setAuth} />) : (< Navigate to="/login" />) } />
           </Routes>
         </div>
       </Router>
